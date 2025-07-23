@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import LandingPage from './pages/LandingPage'
+
 function App() {
   return(
-   <LandingPage/>
+    <div className='text-center bg-amber-700 p-10 text-amber-100'>hllo</div>
   )
 }
 
