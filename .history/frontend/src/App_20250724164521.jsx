@@ -5,9 +5,11 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 
 function App() {
-  const isAuth = true
-  const PrivateRoutes = ({ children }) => {
-    return isAuth ? children : <Navigate to="/register" />;
+  const isAuth = false
+  
+  const PrivateRoutes = ({ Children }) => {
+    return isAuth ? Children : <Navigate to="/register" />;
+
   }
   return (
     <>

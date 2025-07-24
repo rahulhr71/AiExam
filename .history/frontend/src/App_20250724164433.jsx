@@ -5,21 +5,29 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 
 function App() {
-  const isAuth = true
-  const PrivateRoutes = ({ children }) => {
-    return isAuth ? children : <Navigate to="/register" />;
+  const isAuth = false
+  
+  const PrivateRoutes = ({ Children }) => {
+    return isAuth ? Children : <Navigate to="/register" />;
+
   }
   return (
     <>
 
       <Routes>
+
         <Route path='/' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />
+
+
         <Route path="/login" element={
           <PrivateRoutes>
             <Login />
           </PrivateRoutes>
+
         } />
+
+
       </Routes>
     </>
 

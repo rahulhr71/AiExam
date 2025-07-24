@@ -6,8 +6,10 @@ import Register from './pages/Register'
 
 function App() {
   const isAuth = true
+  
   const PrivateRoutes = ({ children }) => {
     return isAuth ? children : <Navigate to="/register" />;
+
   }
   return (
     <>
