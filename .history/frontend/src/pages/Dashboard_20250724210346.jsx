@@ -1,0 +1,25 @@
+import {useEffect,useState} from 'react'
+import axios from 'axios'
+export default function Dashboard() {
+    const [data,setData]=useState('')
+    useEffect(async()=>{
+        try{
+            const res = await axios.get('http://localhost:4000/api/dashboard')
+            if(res.status===200)
+                setData(res.data.message)
+            else{
+                setData("unauthorized ")
+            }
+             
+        }catch(error){
+            console.log(error)
+        }
+       
+
+    },[])
+  return (
+    <div>
+     <h1>Dashboard</h1>
+    </div>
+  )
+}
