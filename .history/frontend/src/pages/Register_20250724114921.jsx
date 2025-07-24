@@ -1,33 +1,21 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios'
-import PopupModal from "../components/PopupModal";
 export default function Register() {
   const navigate = useNavigate();
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [showModal, setShowModal] = useState(false );
-  const [errors,setErrors]=useState([])
-const firstRender = useRef(true);
-  useEffect(()=>{
-     if (firstRender.current) {
-    firstRender.current = false;
-    return;
-  }
+  const [isOpen,setIsOpen]=useState(true)
 
-  if (errors && Object.keys(errors).length > 0) {
-    setShowModal(true);
-    console.log(errors);
-  }
-    
-  },[errors])
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+    let errors = [];
     if (name.length < 3 || name.length > 20) {
-      setErrors(prev => [...prev, "Name must be at least 3 characters."]);
+      errors.push("Name must be at least 3 characters.");
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.push('Invalid email format')
@@ -41,7 +29,8 @@ const firstRender = useRef(true);
     }
     const payload = { name: name, email: email, password: password, confirmPassword: confirmPassword }
     if (errors.length > 0) {
-      
+      return console.log(errors);
+
     }
     const response = await axios.post("http://localhost:4000/api/auth/register",payload)
     if (response.status === 201) {
@@ -69,7 +58,7 @@ const firstRender = useRef(true);
 
         Home &gt;
       </Link>
-      
+      {isOpen&&<PopupModal/>}
       <div className="bg-gray-900 p-8 rounded-xl shadow-xl max-w-md w-full border border-purple-800">
         <h2 className="text-3xl font-bold text-purple-400 text-center mb-6">
           SmartExam Register
@@ -141,8 +130,23 @@ const firstRender = useRef(true);
           </p>
         </form>
       </div>
-      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Validations Error" children={errors}/>
     </div>
   );
 }
+function PopupModal({ isOpen, onClose, title, children }) {
 
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+        <button
+          className="absolute top-2 right-2 text-gray-600 hover:text-red-500"
+          onClick={()=>setIsOpen(false)}
+        >
+          ✖
+        </button>
+        <h2 className="text-xl font-semibold mb-4 text-purple-600">{title}</h2>
+        <div>{children}</div>
+      </div>
+    </div>
+  );
+}

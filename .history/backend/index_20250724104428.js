@@ -14,6 +14,6 @@ console.log("DB connected Successfully");
 app.listen(port,()=>console.log(`server started at http://localhost:${port}`))
 }).catch(e=>console.log(e))
 
-            
+
 
 

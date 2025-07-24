@@ -1,3 +1,4 @@
+
 const { registerSchema } = require('../validations/validateUser')
 const bcrypt = require('bcrypt')
 const Users = require('../models/registerUser')
@@ -10,6 +11,7 @@ const userRegister = async (req, res) => {
         return hashedPassword
     }
     if (error) {
+
         return res.status(400).json({ message: "validation failed", error: error })
     }
     const hashPass = await hashPassword(value.password)

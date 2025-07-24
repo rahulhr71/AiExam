@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios'
 import PopupModal from "../components/PopupModal";
@@ -8,26 +8,17 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [showModal, setShowModal] = useState(false );
-  const [errors,setErrors]=useState([])
-const firstRender = useRef(true);
-  useEffect(()=>{
-     if (firstRender.current) {
-    firstRender.current = false;
-    return;
-  }
+  const [showModal, setShowModal] = useState(true );
+  const [errors,setErrors]=useState(["name error","agr error"])
 
-  if (errors && Object.keys(errors).length > 0) {
-    setShowModal(true);
-    console.log(errors);
-  }
-    
+  useEffect(()=>{
+    setShowModal(true)
   },[errors])
   const handleSubmit = async (e) => {
     e.preventDefault();
    
     if (name.length < 3 || name.length > 20) {
-      setErrors(prev => [...prev, "Name must be at least 3 characters."]);
+      setErrors(...errors,"Name must be at least 3 characters.");
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.push('Invalid email format')
@@ -41,7 +32,8 @@ const firstRender = useRef(true);
     }
     const payload = { name: name, email: email, password: password, confirmPassword: confirmPassword }
     if (errors.length > 0) {
-      
+      return console.log(errors);
+
     }
     const response = await axios.post("http://localhost:4000/api/auth/register",payload)
     if (response.status === 201) {
@@ -141,7 +133,7 @@ const firstRender = useRef(true);
           </p>
         </form>
       </div>
-      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Validations Error" children={errors}/>
+      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Error" children={errors}/>
     </div>
   );
 }

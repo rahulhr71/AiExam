@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios'
 import PopupModal from "../components/PopupModal";
@@ -8,26 +8,15 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [showModal, setShowModal] = useState(false );
-  const [errors,setErrors]=useState([])
-const firstRender = useRef(true);
-  useEffect(()=>{
-     if (firstRender.current) {
-    firstRender.current = false;
-    return;
-  }
+  const [showModal, setShowModal] = useState(true );
 
-  if (errors && Object.keys(errors).length > 0) {
-    setShowModal(true);
-    console.log(errors);
-  }
-    
-  },[errors])
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
+    let errors = [];
     if (name.length < 3 || name.length > 20) {
-      setErrors(prev => [...prev, "Name must be at least 3 characters."]);
+      errors.push("Name must be at least 3 characters.");
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.push('Invalid email format')
@@ -41,7 +30,8 @@ const firstRender = useRef(true);
     }
     const payload = { name: name, email: email, password: password, confirmPassword: confirmPassword }
     if (errors.length > 0) {
-      
+      return console.log(errors);
+
     }
     const response = await axios.post("http://localhost:4000/api/auth/register",payload)
     if (response.status === 201) {
@@ -69,7 +59,7 @@ const firstRender = useRef(true);
 
         Home &gt;
       </Link>
-      
+      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Error" children={"1. validation error"}/>
       <div className="bg-gray-900 p-8 rounded-xl shadow-xl max-w-md w-full border border-purple-800">
         <h2 className="text-3xl font-bold text-purple-400 text-center mb-6">
           SmartExam Register
@@ -141,7 +131,6 @@ const firstRender = useRef(true);
           </p>
         </form>
       </div>
-      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Validations Error" children={errors}/>
     </div>
   );
 }

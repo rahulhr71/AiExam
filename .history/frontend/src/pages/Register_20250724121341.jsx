@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios'
 import PopupModal from "../components/PopupModal";
@@ -8,19 +8,12 @@ export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [showModal, setShowModal] = useState(false );
+  const [showModal, setShowModal] = useState(true );
   const [errors,setErrors]=useState([])
-const firstRender = useRef(true);
-  useEffect(()=>{
-     if (firstRender.current) {
-    firstRender.current = false;
-    return;
-  }
 
-  if (errors && Object.keys(errors).length > 0) {
-    setShowModal(true);
+  useEffect(()=>{
+    setShowModal(true)
     console.log(errors);
-  }
     
   },[errors])
   const handleSubmit = async (e) => {
@@ -141,7 +134,7 @@ const firstRender = useRef(true);
           </p>
         </form>
       </div>
-      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Validations Error" children={errors}/>
+      <PopupModal  isOpen={showModal}  onClose={() => setShowModal(false)} title="Validations Errors" children={errors}/>
     </div>
   );
 }
