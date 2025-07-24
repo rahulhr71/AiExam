@@ -23,7 +23,7 @@ export default function Register() {
     }
 
   }, [errors])
-    
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 

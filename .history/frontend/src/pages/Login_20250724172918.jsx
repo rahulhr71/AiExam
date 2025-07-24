@@ -5,53 +5,25 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
+  const [showModal, setShowModal] = useState(false);
+  const [errors, setErrors] = useState([])
+  const firstRender = useRef(true);
+  const handleLogin = (e) => {
     e.preventDefault();
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert('Invalid email format')
+      errors.push('Invalid email format')
     }
 
     if (password.length < 6) {
-      alert("Password must be at least 6 characters.");
+      errors.push("Password must be at least 6 characters.");
     }
-    const payload = {
-      email: email,
-      password: password
+    if (email && password) {
+      console.log("Login success", { email, password });
+      navigate("/dashboard");
+    } else {
+      alert("Please fill in all fields.");
     }
-    try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", payload);
-
-      if (res.status === 200) {
-        alert("Login success");
-        console.log(res);
-        navigate('/dashboard');
-      }
-    } catch (e) {
-      if (e.response) {
-        const status = e.response.status;
-
-        if (status === 404) {
-          alert("User not found");
-          console.log("User not found");
-        } else if (status === 401) {
-          alert("Invalid credentials");
-          console.log("Wrong email or password");
-        } else {
-          alert("Login failed");
-          console.error(e.response.data);
-        }
-      } else {
-       
-        alert("Network error or server not reachable");
-        console.error(e);
-      }
-    }
-
-
-
-
   };
 
   return (

@@ -23,7 +23,6 @@ export default function Register() {
     }
 
   }, [errors])
-    
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,7 +43,8 @@ export default function Register() {
     if (errors.length > 0) {
 
     }
-    try {
+    const handleRegister = async () => {
+  try {
     const response = await axios.post("http://localhost:4000/api/auth/register", payload);
 
     if (response.status === 201) {
@@ -77,9 +77,8 @@ export default function Register() {
       console.error("Network error:", error);
     }
   }
-    
+    }}
 
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 to-gray-950 px-4">

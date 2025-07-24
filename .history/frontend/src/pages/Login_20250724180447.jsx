@@ -21,36 +21,25 @@ export default function Login() {
       password: password
     }
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", payload);
-
+      const res = await axios.post("http://localhost:4000/api/auth/login", payload)
       if (res.status === 200) {
-        alert("Login success");
-        console.log(res);
-        navigate('/dashboard');
-      }
-    } catch (e) {
-      if (e.response) {
-        const status = e.response.status;
-
-        if (status === 404) {
-          alert("User not found");
-          console.log("User not found");
-        } else if (status === 401) {
-          alert("Invalid credentials");
-          console.log("Wrong email or password");
-        } else {
-          alert("Login failed");
-          console.error(e.response.data);
-        }
-      } else {
-       
-        alert("Network error or server not reachable");
-        console.error(e);
-      }
+      alert("login success")
+      console.log(res)
+      navigate('/dashboard');
+    } else if (res.status === 404) {
+      alert("user not found")
+      console.log("user not found")
     }
 
+    else if (res.status === 401) {
+      alert('invailid credential')
+    }
+    }catch(e){
+      console.log(e)
 
-
+    }
+   
+    
 
   };
 

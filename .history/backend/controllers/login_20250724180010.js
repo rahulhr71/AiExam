@@ -1,5 +1,4 @@
 const { LoginSchema } = require('../validations/validateUser')
-const jwt =require('jsonwebtoken')
 const bcrypt=require('bcrypt')
 const Users = require('../models/registerUser')
 const userLogin = async(req, res) => {
@@ -10,11 +9,9 @@ const userLogin = async(req, res) => {
     if (!user) {
         return res.status(404).json({ message: "user Not Found" })
     }
-    const isMatch = await bcrypt.compare(value.password,user.password)
+    const isMatch=bcrypt.compare(value.password,user.password)
     if(!isMatch)return res.status(401).json({message:"invalid credential "}) 
-    const token= jwt.sign({ id : user._id} ,"rahul", {expiresIn:"1d"} )
-
-    return res.status(200).json({message:"user found",user,token}) 
+    return res.status(200).json({message:"user found",user}) 
 }
 module.exports = { userLogin }
 

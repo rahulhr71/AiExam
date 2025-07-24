@@ -1,67 +1,31 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import axios from "axios";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert('Invalid email format')
+    
+    if (email && password) {
+      console.log("Login success", { email, password });
+      navigate("/dashboard"); 
+    } else {
+      alert("Please fill in all fields.");
     }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters.");
-    }
-    const payload = {
-      email: email,
-      password: password
-    }
-    try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", payload);
-
-      if (res.status === 200) {
-        alert("Login success");
-        console.log(res);
-        navigate('/dashboard');
-      }
-    } catch (e) {
-      if (e.response) {
-        const status = e.response.status;
-
-        if (status === 404) {
-          alert("User not found");
-          console.log("User not found");
-        } else if (status === 401) {
-          alert("Invalid credentials");
-          console.log("Wrong email or password");
-        } else {
-          alert("Login failed");
-          console.error(e.response.data);
-        }
-      } else {
-       
-        alert("Network error or server not reachable");
-        console.error(e);
-      }
-    }
-
-
-
-
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 to-gray-950 px-4">
-      <Link
-        to="/"
-        className="absolute top-4 left-4 text-sm text-white hover:text-purple-300 hover:underline"
-      >
-        Home &gt;
-      </Link>
+        <Link
+          to="/"
+          className="absolute top-4 left-4 text-sm text-white hover:text-purple-300 hover:underline"
+        >
+           Home &gt;
+        </Link>
       <div className="bg-gray-900 p-8 rounded-xl shadow-xl max-w-md w-full border border-purple-800">
         <h2 className="text-3xl font-bold text-purple-400 text-center mb-6">
           SmartExam Login

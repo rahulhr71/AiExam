@@ -23,7 +23,6 @@ export default function Register() {
     }
 
   }, [errors])
-    
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,6 +43,7 @@ export default function Register() {
     if (errors.length > 0) {
 
     }
+    //const response = await axios.post("http://localhost:4000/api/auth/register", payload)
     try {
     const response = await axios.post("http://localhost:4000/api/auth/register", payload);
 

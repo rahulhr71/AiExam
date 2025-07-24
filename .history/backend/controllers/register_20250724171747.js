@@ -25,8 +25,8 @@ const userRegister = async (req, res) => {
         }
         if (err.code === 11000 && err.name === 'MongoServerError') {
            
-            res.status(409).json({
-                message: `already exists`
+            res.status(408).json({
+                message: ` already exists`
             });
         }
         return res.status(500).json({ message: "Something went wrong", error: err.message });

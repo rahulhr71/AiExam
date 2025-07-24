@@ -23,7 +23,6 @@ export default function Register() {
     }
 
   }, [errors])
-    
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,40 +43,21 @@ export default function Register() {
     if (errors.length > 0) {
 
     }
-    try {
-    const response = await axios.post("http://localhost:4000/api/auth/register", payload);
-
+    const response = await axios.post("http://localhost:4000/api/auth/register", payload)
     if (response.status === 201) {
       alert("User registered successfully!");
       navigate('/login');
-    } else if (response.status === 400) {
-      console.log(response.data.message, "Bad Request");
-      alert("Bad request: " + response.data.message);
-    } else if (response.status === 500) {
-      alert("Internal Server Error");
-    } else {
-      alert("Unexpected response");
-      console.log("response:", response);
-    }
-  } catch (error) {
-    if (error.response) {
-      const status = error.response.status;
 
-      if (status === 409) {
-        alert("User already exists");
-      } else if (status === 400) {
-        alert("Validation failed: " + error.response.data.message);
-      } else if (status === 500) {
-        alert("Server error: " + error.response.data.message);
-      } else {
-        alert("Error: " + error.response.data.message);
-      }
-    } else {
-      alert("No response from server");
-      console.error("Network error:", error);
     }
-  }
-    
+    if (response.status === 400) {
+      console.log(response.data.message, "fails")
+    }
+    if (response.status === 409) {
+      alert('user already exist');
+    }
+    if (response.status === 500) {
+      alert('internal server error')
+    }
 
   };
 

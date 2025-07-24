@@ -24,9 +24,11 @@ const userRegister = async (req, res) => {
             return res.status(400).json({ message: "Validation Error", error: err.message });
         }
         if (err.code === 11000 && err.name === 'MongoServerError') {
-           
+            const duplicateField = Object.keys(err.keyValue)[0];
+            const duplicateValue = err.keyValue[duplicateField];
+
             res.status(409).json({
-                message: `already exists`
+                message: `${duplicateField} "${duplicateValue}" already exists`
             });
         }
         return res.status(500).json({ message: "Something went wrong", error: err.message });

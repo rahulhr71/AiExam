@@ -5,8 +5,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
+ 
+  const handleLogin = async(e) => {
     e.preventDefault();
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -16,42 +16,18 @@ export default function Login() {
     if (password.length < 6) {
       alert("Password must be at least 6 characters.");
     }
-    const payload = {
-      email: email,
-      password: password
+    const payload={
+      email:email,
+      password:password
     }
-    try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", payload);
-
-      if (res.status === 200) {
-        alert("Login success");
-        console.log(res);
-        navigate('/dashboard');
-      }
-    } catch (e) {
-      if (e.response) {
-        const status = e.response.status;
-
-        if (status === 404) {
-          alert("User not found");
-          console.log("User not found");
-        } else if (status === 401) {
-          alert("Invalid credentials");
-          console.log("Wrong email or password");
-        } else {
-          alert("Login failed");
-          console.error(e.response.data);
-        }
-      } else {
-       
-        alert("Network error or server not reachable");
-        console.error(e);
-      }
-    }
-
-
-
-
+    const res= await axios.post("http://localhost:4000/api/auth/login",payload)
+    if(res.status===200){
+      alert("login success")
+      console.log(res)
+      navigate('/dashboard');
+    }else if(res.status===404 )alert("user not found")
+      else if(res.status===401)alert('invailid credential')
+        
   };
 
   return (

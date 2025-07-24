@@ -43,7 +43,7 @@ export default function Login() {
           console.error(e.response.data);
         }
       } else {
-       
+        // network/server error without response
         alert("Network error or server not reachable");
         console.error(e);
       }
