@@ -23,7 +23,7 @@ function App() {
           </PrivateRoutes>
         } />
       </Routes>
-     
+      <DemoPage/>
     </>
 
   )

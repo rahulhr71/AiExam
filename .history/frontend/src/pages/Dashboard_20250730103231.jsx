@@ -72,8 +72,8 @@ export default function Dashboard() {
 
                                 </div>
                             </div>
-                             <div className='w-100 ml-8 border border-[#6c34c5]   rounded-2xl'>
-                                <div className='border-b p-3 border-[#6c34c5]'>
+                             <div className='w-100 ml-8 border border-purple-400   rounded-2xl'>
+                                <div className='border-b p-3 border-b-purple-400'>
                                     <p className='text-cyan-300 font-medium'>Join Exam</p>
                                 </div>
                                 

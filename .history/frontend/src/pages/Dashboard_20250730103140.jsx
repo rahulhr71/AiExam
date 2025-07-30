@@ -45,7 +45,7 @@ export default function Dashboard() {
 
                 auth ? <UnAuthorized /> : (
                     <div className='bg-[#15082b] w-full h-100 box-border  shadow  text-white'>
-                        <div className='w-full flex justify-between border-t shadow-[#42207d] border-[#6c34c5] border-b p-3'>
+                        <div className='w-full flex justify-between border-t shadow-[#42207d] border-purple-400 border-b p-3'>
                             <h1 className="text-2xl font-bold  text-purple-400">SmartExam</h1>
                             <div>
                                 <ul className='flex justify-center items-center gap-7 ' >
@@ -57,8 +57,8 @@ export default function Dashboard() {
                         </div>
                         <h1 className='p-10 text-3xl capitalize font-medium'>welcome, John Doe</h1>
                         <div className='flex '>
-                            <div className='w-190 border border-[#6c34c5] ml-8  rounded-2xl'>
-                                <div className='border-b p-3 border-[#6c34c5]'>
+                            <div className='w-190 border border-purple-400 ml-8  rounded-2xl'>
+                                <div className='border-b p-3 border-b-purple-400'>
                                     <p className='text-cyan-300 font-medium'>Assigned Exams</p>
                                 </div>
                                 <h1 className='text-2xl font-medium px-4 pt-2 '>Math Quiz</h1>
@@ -72,8 +72,8 @@ export default function Dashboard() {
 
                                 </div>
                             </div>
-                             <div className='w-100 ml-8 border border-[#6c34c5]   rounded-2xl'>
-                                <div className='border-b p-3 border-[#6c34c5]'>
+                             <div className='w-100 ml-8 border border-purple-400   rounded-2xl'>
+                                <div className='border-b p-3 border-b-purple-400'>
                                     <p className='text-cyan-300 font-medium'>Join Exam</p>
                                 </div>
                                 
