@@ -75,8 +75,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex">
-                            <div className='w-145 ml-8 border mt-5 border-[#6c34c5]   rounded-2xl'>
+                        <div className='w-100 ml-8 border border-[#6c34c5]   rounded-2xl'>
                                 <div className='border-b p-3 border-[#6c34c5]'>
                                     <p className='text-cyan-300 font-medium'>Previous Exam</p>
                                 </div>
@@ -95,28 +94,11 @@ export default function Dashboard() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='w-145 ml-8 border mt-5 border-[#6c34c5]   rounded-2xl'>
-                                <div className='border-b p-3 border-[#6c34c5]'>
-                                    <p className='text-cyan-300 font-medium'>Upcoming Exam</p>
-                                </div>
-                                <div className=''>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
                 )
+
+
             }
         </>
     )

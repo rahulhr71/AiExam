@@ -39,7 +39,7 @@ export default function Dashboard() {
         <>
             {
                 auth ? <UnAuthorized /> : (
-                    <div className='bg-[#15082b] w-full  box-border  shadow  text-white'>
+                    <div className='bg-[#15082b] w-full h-100 box-border  shadow  text-white'>
                         <div className='w-full flex justify-between border-t shadow-[#42207d] border-[#6c34c5] border-b p-3'>
                             <h1 className="text-2xl font-bold  text-purple-400">SmartExam</h1>
                             <div>
@@ -74,49 +74,18 @@ export default function Dashboard() {
                                     <button className='p-2 mt-5 font-medium bg-[#6c34c5] cursor-pointer  hover:bg-purple-400 rounded-sm'>Join Exam</button>
                                 </div>
                             </div>
+
                         </div>
-                        <div className="flex">
-                            <div className='w-145 ml-8 border mt-5 border-[#6c34c5]   rounded-2xl'>
-                                <div className='border-b p-3 border-[#6c34c5]'>
-                                    <p className='text-cyan-300 font-medium'>Previous Exam</p>
-                                </div>
-                                <div className=''>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='w-145 ml-8 border mt-5 border-[#6c34c5]   rounded-2xl'>
-                                <div className='border-b p-3 border-[#6c34c5]'>
-                                    <p className='text-cyan-300 font-medium'>Upcoming Exam</p>
-                                </div>
-                                <div className=''>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                    <div className='flex justify-between w-full p-4'>
-                                        <p>Science Test </p>
-                                        <p>May 20 ,2025</p>
-                                    </div>
-                                </div>
+                        <div className='w-100 ml-8 border border-[#6c34c5]   rounded-2xl'>
+                            <div className='border-b p-3 border-[#6c34c5]'>
+                                <p className='text-cyan-300 font-medium'>Join Exam</p>
                             </div>
                         </div>
                     </div>
+
                 )
+
+
             }
         </>
     )

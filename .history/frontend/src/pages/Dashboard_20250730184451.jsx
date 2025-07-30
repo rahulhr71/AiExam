@@ -76,6 +76,8 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div className="flex">
+
+
                             <div className='w-145 ml-8 border mt-5 border-[#6c34c5]   rounded-2xl'>
                                 <div className='border-b p-3 border-[#6c34c5]'>
                                     <p className='text-cyan-300 font-medium'>Previous Exam</p>
@@ -97,7 +99,7 @@ export default function Dashboard() {
                             </div>
                             <div className='w-145 ml-8 border mt-5 border-[#6c34c5]   rounded-2xl'>
                                 <div className='border-b p-3 border-[#6c34c5]'>
-                                    <p className='text-cyan-300 font-medium'>Upcoming Exam</p>
+                                    <p className='text-cyan-300 font-medium'>Previous Exam</p>
                                 </div>
                                 <div className=''>
                                     <div className='flex justify-between w-full p-4'>
@@ -116,7 +118,10 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
+
                 )
+
+
             }
         </>
     )
