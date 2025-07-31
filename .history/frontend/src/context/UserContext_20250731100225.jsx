@@ -5,7 +5,7 @@ export const UserProvider=({children})=>{
     const [count,setCount]=useState(10)
     return(
         <UserContext.Provider value={{count,setCount}}>
-            {children}
+            { children }
         </UserContext.Provider>
     )
 

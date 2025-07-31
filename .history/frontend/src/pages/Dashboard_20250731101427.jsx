@@ -45,8 +45,8 @@ export default function Dashboard() {
                             <div>
                                 <ul className='flex justify-center items-center gap-7 ' >
                                     <li className='cursor-pointer hover:text-[#6c34c5]'>Home</li>
-                                    <li className='cursor-pointer hover:text-[#6c34c5]'>Dashboard</li>
-                                    <li className='cursor-pointer hover:text-[#6c34c5]' onClick={() => logout()}>Logout</li>
+                                    <li className='cursor-pointer'>Dashboard</li>
+                                    <li className='cursor-pointer' onClick={() => logout()}>Logout</li>
                                 </ul>
                             </div>
                         </div>
