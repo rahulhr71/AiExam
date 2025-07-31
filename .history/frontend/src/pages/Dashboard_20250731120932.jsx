@@ -71,7 +71,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className='flex  gap-4 items-center justify-center    '>
                                     <input type="text" className='border mt-5 border-[#6c34c5] p-1' placeholder='Enter Exam Code' />
-                                    <button className='p-2 mt-5 font-medium bg-[#6c34c5] cursor-pointer  hover:bg-[#6c34c598] rounded-sm'>Join Exam</button>
+                                    <button className='p-2 mt-5 font-medium bg-[#6c34c5] cursor-pointer  hover:bg-purple-400 rounded-sm'>Join Exam</button>
                                 </div>
                             </div>
                         </div>
