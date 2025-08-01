@@ -21,7 +21,7 @@ export default function Login() {
       password: password
     }
     try {
-      const res = await axios.post("http://localhost:4000/api/adminAuth/login", payload, {
+      const res = await axios.post("http://localhost:4000/api/auth/login", payload, {
         withCredentials: true,  
       }
       );
@@ -59,15 +59,15 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 to-gray-950 px-4">
-      {/* <Link
+      <Link
         to="/"
         className="absolute top-4 left-4 text-sm text-white hover:text-purple-300 hover:underline"
       >
         Home &gt;
-      </Link> */}
+      </Link>
       <div className="bg-gray-900 p-8 rounded-xl shadow-xl max-w-md w-full border border-purple-800">
         <h2 className="text-3xl font-bold text-purple-400 text-center mb-6">
-          Admin Login
+          Teacher Login
         </h2>
         <form onSubmit={handleLogin} className="space-y-5">
           <div>

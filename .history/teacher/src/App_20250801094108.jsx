@@ -8,13 +8,13 @@ const counts=Array.from({length:100})
   return (
     < >
       
-   
+    <Router>
       <Routes>
         <Route path='/' element={<Login/>}/>
 
         
       </Routes>
-   
+    </Router>
    
     </>
   )

@@ -13,7 +13,7 @@ const userRegister = async (req, res) => {
         return res.status(400).json({ message: "validation failed", error: error })
     }
     const hashPass = await hashPassword(value.password)
-    const newUser = new Users({ name: value.name, email: value.email , course: value.course,category:value.category,password: hashPass })
+    const newUser = new Users({ name: value.name, email: value.email , course: value.course,category:value.category, password: hashPass })
 
     try {
         const result = await newUser.save();
