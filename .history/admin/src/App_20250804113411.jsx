@@ -3,7 +3,8 @@ import Login from './pages/Login'
 import {  Route, Routes } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 function App() {
-  
+  const [count, setCount] = useState(0)
+
   return (
     <>
      
@@ -11,7 +12,10 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard/>} />
-          </Routes>  
+          
+          </Routes>
+     
+  
     </>
   )
 }

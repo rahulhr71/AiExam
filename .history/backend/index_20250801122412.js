@@ -18,11 +18,13 @@ const corsOptions = {
     }
   },
   credentials: true
-}
+};
+
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use('/api', handleRoute)
+
 mongoose.connect(dbUrl)
   .then(() => {
     console.log("DB connected Successfully")
