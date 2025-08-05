@@ -4,11 +4,11 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
-import {useUser} from './context/UserContext'
+import {isAuth} from './context/UserContext'
 import DemoPage from './pages/DemoPage'
 function App() {
   
-const { isAuth } = useUser();
+
 
   
   console.log("isAuth", isAuth)

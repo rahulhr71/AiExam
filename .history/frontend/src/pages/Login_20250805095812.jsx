@@ -6,7 +6,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setIsAuth } = useUser();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,8 +29,6 @@ export default function Login() {
 
       if (res.status === 200) {
         alert("Login success");
-        setIsAuth(true);
-        console.log("Login successful");
         console.log(res);
         navigate('/dashboard');
       }

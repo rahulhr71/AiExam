@@ -3,7 +3,7 @@ const authUser=(req,res,next)=>{
     const token=req.cookies.token
     const secret=process.env.SECRET_KEY
     const admin=process.env.ADMIN_EMAIL
-    const admin_pass=process.env.ADMIN_PASSWORDs
+    const admin_pass=process.env.ADMIN_PASSWORD
     if (!token) return res.status(401).json({ message: "Unauthorized" });
     try{
         const decode=jwt.verify(token,secret)

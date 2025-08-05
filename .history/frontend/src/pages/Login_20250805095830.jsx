@@ -30,8 +30,6 @@ export default function Login() {
 
       if (res.status === 200) {
         alert("Login success");
-        setIsAuth(true);
-        console.log("Login successful");
         console.log(res);
         navigate('/dashboard');
       }

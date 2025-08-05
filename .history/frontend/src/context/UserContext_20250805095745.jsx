@@ -3,7 +3,7 @@ const UserContext=createContext()
 
 export const UserProvider=({children})=>{
     const [count,setCount]=useState(10)
-    const [isAuth, setIsAuth] = useState(true); 
+    const [isAuth, setIsAuth] = useState(false); 
     return(
         <UserContext.Provider value={{count,setCount,isAuth,setIsAuth}}>
             {children}

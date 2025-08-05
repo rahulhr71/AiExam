@@ -9,5 +9,5 @@ router.use('/teacterAuth',teacherAuth)
 router.use('/adminAuth' ,adminAuth)
 router.use('/dashboard',dashboardRoute) 
 router.use('/logout',logoutRoute)
-// router.use('/admin',adminRoute)
+router.use('/admin',adminRoute)
 module.exports=router;

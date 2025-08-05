@@ -37,7 +37,8 @@ export default function Dashboard() {
             }
         }
         loadData()
-    }, [])  
+    }, []) // Only run once on mount
+
     return (
         <>
             {!auth ? (
