@@ -45,7 +45,7 @@ const Dashboard = () => {
       case 'addStudent':
         return <div>AddStudents Component</div>;
       case 'addClass':
-        return <DataTransferList/>;
+        return <div>AddClass Component</div>;
       case 'viewTeachers':
         return <TeachersList/>;
       case 'viewStudents':

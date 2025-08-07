@@ -10,8 +10,9 @@ import TeachersList from '../components/TeachersList'
 import StudentsList from '../components/StudentsList';
 import ClassesList from '../components/ClassList';
 import ExamList from '../components/Exams';
-import SmartExamFeatures from '../components/Features';
+import Features from '../components/Features';
 const Dashboard = () => {
+
   const {activeComponent,setActiveComponent} = useAdmin();
   const [stats, setStats] = useState({
     teachers: 0,
@@ -21,6 +22,7 @@ const Dashboard = () => {
   });
  
   useEffect(() => {
+ 
     const fetchStats = async () => {
       try {
         const res = await axios.get('http://localhost:4000/api/admin/dashboard/summery', {
@@ -31,6 +33,7 @@ const Dashboard = () => {
         console.error("Failed to fetch dashboard stats", err);
       }
     };
+
     fetchStats();
   }, []);
 
@@ -45,7 +48,7 @@ const Dashboard = () => {
       case 'addStudent':
         return <div>AddStudents Component</div>;
       case 'addClass':
-        return <DataTransferList/>;
+        return <div>AddClass Component</div>;
       case 'viewTeachers':
         return <TeachersList/>;
       case 'viewStudents':
@@ -61,7 +64,7 @@ const Dashboard = () => {
       case 'exams':
         return <ExamList/>;
       case 'new features':
-        return <SmartExamFeatures/>
+        return <Features/>
       case 'settings and profile':
         return <div>settings Component</div>;
       default:
