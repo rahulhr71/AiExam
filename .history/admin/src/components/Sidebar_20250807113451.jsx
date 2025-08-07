@@ -15,9 +15,9 @@ const { setActiveComponent } = useAdmin();
     { name: 'Dashboard', icon: <HomeIcon className="h-6 w-6 text-white" />, link: "/dashboard" },
     { name: 'Teachers', icon: <HomeIcon className="h-6 w-6 text-white" />, link: "/dashboard/teachers" },
     { name: 'Students', icon: <AcademicCapIcon className="h-6 w-6 text-white" />, link: "/dashboard/students" },
+    { name: 'Settings and Profile', icon: <Cog6ToothIcon className="h-6 w-6 text-white" />, link: "/dashboard/settings" },
     { name: 'Exams', icon: <DocumentTextIcon className="h-6 w-6 text-white" />, link: "/dashboard/exams" },
     { name: 'New Features', icon: <SparklesIcon className="h-6 w-6 text-white" />, link: "/dashboard/new-features" },
-     { name: 'Settings and Profile', icon: <Cog6ToothIcon className="h-6 w-6 text-white" />, link: "/dashboard/settings" },
   ];
 
   return (
@@ -37,11 +37,8 @@ const { setActiveComponent } = useAdmin();
             <Link to={link.link} className="w-full" key={index}>
               <div
                 className={`w-full p-2 flex gap-3 items-center text-white cursor-pointer rounded-md transition ${isActive ? 'bg-[#1E2A78]' : 'hover:bg-[#1E2A78]'
-                  }`} onClick={() => {
-                  setActiveComponent(link.name.toLowerCase());} 
-                  }
+                  }`}
               >
-                
                 {link.icon}
                 <span className="text-sm">{link.name}</span>
               </div>

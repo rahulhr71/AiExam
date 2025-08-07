@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate,Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import Teachers from '../components/Teachers';
+import AddTeachers from '../components/AddTeachers';
 import { BellIcon, UserGroupIcon, AcademicCapIcon, ClipboardDocumentCheckIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useAdmin } from '../context/adminContext';
-import Students from '../components/Students';
 const Dashboard = () => {
-
   const {activeComponent,setActiveComponent} = useAdmin();
   const [stats, setStats] = useState({
     teachers: 0,
@@ -39,7 +37,7 @@ const Dashboard = () => {
   const renderComponent = () => {
     switch (activeComponent) {
       case 'addTeacher':
-        return <div>add</div>;
+        return <AddTeachers />;
       case 'addStudent':
         return <div>AddStudents Component</div>;
       case 'addClass':
@@ -53,9 +51,9 @@ const Dashboard = () => {
       case 'viewExams':
         return <div>viewExams Component</div>;
       case 'teachers':
-        return <Teachers />;
+        return <div>teachers Component</div>;
       case 'students':
-        return <Students/>;
+        return <div>Students Component</div>;
       case 'exams':
         return <div>Exam Component</div>;
       case 'new features':

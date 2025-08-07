@@ -5,9 +5,7 @@ import Sidebar from '../components/Sidebar';
 import Teachers from '../components/Teachers';
 import { BellIcon, UserGroupIcon, AcademicCapIcon, ClipboardDocumentCheckIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useAdmin } from '../context/adminContext';
-import Students from '../components/Students';
 const Dashboard = () => {
-
   const {activeComponent,setActiveComponent} = useAdmin();
   const [stats, setStats] = useState({
     teachers: 0,
@@ -55,7 +53,7 @@ const Dashboard = () => {
       case 'teachers':
         return <Teachers />;
       case 'students':
-        return <Students/>;
+        return <div>Students Component</div>;
       case 'exams':
         return <div>Exam Component</div>;
       case 'new features':
