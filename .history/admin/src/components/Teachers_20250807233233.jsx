@@ -2,23 +2,17 @@ import React from 'react'
 import { useState } from 'react';
 
 const Teachers = () => {
-    const [activeComponent, setActiveComponent] = useState(false);
-    const renderComponent = () => {
-        return  <AddTeacher setActiveComponent={setActiveComponent}/>
-    }
     return (
         <div className="p-4">
-            
+             <AddTeacher/>
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-800">Teacher List</h2>
-                <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm shadow" onClick={()=> setActiveComponent(!activeComponent)}>
+                <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm shadow">
                     + Add Teacher
                 </button>
             </div>
-            <div className="mb-6 ">
-                {activeComponent&&renderComponent()}
+           
 
-                </div>
            
             <table className="min-w-full divide-y divide-gray-200 border border-gray-300 shadow-md rounded-lg overflow-hidden">
                 <thead className="bg-gray-100 text-gray-700">
@@ -63,7 +57,7 @@ const Teachers = () => {
     )
 }
 export default Teachers;
-const AddTeacher = ({setActiveComponent}) => {
+const AddTeacher = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -81,6 +75,7 @@ const AddTeacher = ({setActiveComponent}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted Teacher:', formData);
+    // You can integrate backend POST request here
     alert('Teacher added successfully!');
     setFormData({ name: '', email: '', subject: '', phone: '' });
   };
@@ -149,12 +144,6 @@ const AddTeacher = ({setActiveComponent}) => {
           className="bg-[#152259] text-white px-4 py-2 rounded-md hover:bg-blue-900"
         >
           Add Teacher
-        </button>
-        <button
-          type="submit"
-          className="bg-red-500 text-white px-4 m-3 py-2 rounded-md hover:bg-amber-600" onClick={() => setActiveComponent(false)}
-        >
-            Cancel
         </button>
       </form>
     </div>

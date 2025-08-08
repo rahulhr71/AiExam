@@ -4,7 +4,7 @@ import { useState } from 'react';
 const Teachers = () => {
     const [activeComponent, setActiveComponent] = useState(false);
     const renderComponent = () => {
-        return  <AddTeacher setActiveComponent={setActiveComponent}/>
+        return  <AddTeacher/>
     }
     return (
         <div className="p-4">
@@ -16,7 +16,7 @@ const Teachers = () => {
                 </button>
             </div>
             <div className="mb-6 ">
-                {activeComponent&&renderComponent()}
+                {renderComponent()}
 
                 </div>
            
@@ -63,7 +63,7 @@ const Teachers = () => {
     )
 }
 export default Teachers;
-const AddTeacher = ({setActiveComponent}) => {
+const AddTeacher = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -149,12 +149,6 @@ const AddTeacher = ({setActiveComponent}) => {
           className="bg-[#152259] text-white px-4 py-2 rounded-md hover:bg-blue-900"
         >
           Add Teacher
-        </button>
-        <button
-          type="submit"
-          className="bg-red-500 text-white px-4 m-3 py-2 rounded-md hover:bg-amber-600" onClick={() => setActiveComponent(false)}
-        >
-            Cancel
         </button>
       </form>
     </div>

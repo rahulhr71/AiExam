@@ -4,7 +4,7 @@ import { useState } from 'react';
 const Teachers = () => {
     const [activeComponent, setActiveComponent] = useState(false);
     const renderComponent = () => {
-        return  <AddTeacher setActiveComponent={setActiveComponent}/>
+        return  <AddTeacher fun={setActiveComponent}/>
     }
     return (
         <div className="p-4">

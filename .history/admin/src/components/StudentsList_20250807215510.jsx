@@ -11,9 +11,9 @@ const dummyStudents = [
 const StudentsList = () => {
     const [students, setStudents] = useState([]);
     const [selectedClass, setSelectedClass] = useState("All");
-    const {setActiveComponent} = useAdmin();
+    const {activeComponent,setActiveComponent} = useAdmin();
 
- 
+    // Get unique class values
     const classList = ["All", ...new Set(dummyStudents.map(s => s.class))];
 
     useEffect(() => {
@@ -27,8 +27,14 @@ const StudentsList = () => {
     return (
         <div className="max-w-6xl mx-auto mt-10 px-4">
             <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
-                <button onClick={() => setActiveComponent('')} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm shadow" >← Back to Dashboard</button>
+                 <button
+                    onClick={() => setActiveComponent('')}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm shadow"
+                >
+                    ← Back to Dashboard
+                </button>
                 <h2 className="text-2xl font-bold text-[#152259]">Students List</h2>
+
                 <div>
                     <label className="text-sm font-medium mr-2 text-gray-700">Filter by Class:</label>
                     <select

@@ -11,9 +11,9 @@ const dummyStudents = [
 const StudentsList = () => {
     const [students, setStudents] = useState([]);
     const [selectedClass, setSelectedClass] = useState("All");
-    const {setActiveComponent} = useAdmin();
+    const {activeComponent,setActiveComponent} = useAdmin();
 
- 
+    // Get unique class values
     const classList = ["All", ...new Set(dummyStudents.map(s => s.class))];
 
     useEffect(() => {

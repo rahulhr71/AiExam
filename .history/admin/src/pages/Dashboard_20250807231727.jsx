@@ -139,9 +139,9 @@ const DashboardOverview = ({ stats, onActionClick }) => {
       <div className='mt-8'>
         <h3 className='text-xl font-semibold mb-3'>Quick Actions</h3>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-           <ActionButton label="Add Teacher"  />
-       <ActionButton label="Add Student" />
-          <ActionButton label="Add Class"  />
+           <ActionButton label="Add Teacher" onClick={() => onActionClick('addTeacher')} />
+       <ActionButton label="Add Student" onClick={() => onActionClick('addStudent')} />
+          <ActionButton label="Add Class" onClick={() => onActionClick('addClass')} />
         </div>
       </div>
     </div>

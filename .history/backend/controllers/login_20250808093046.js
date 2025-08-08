@@ -14,7 +14,7 @@ const userLogin = async(req, res) => {
     }
     const isMatch = await bcrypt.compare(value.password,user.password)
     if(!isMatch)return res.status(401).json({message:"invalid credential "}) 
-    const token= jwt.sign({ id : user._id , role:"student" } ,secret, {expiresIn:"1d"} )
+    const token= jwt.sign({ id : user._id,role:"admin"} ,secret, {expiresIn:"1d"} )
     res.cookie("token",token,{
         httpOnly:true,
         secure:false,
