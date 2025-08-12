@@ -1,0 +1,52 @@
+const express = require('express');
+const multer = require('multer');
+const cors = require('cors');
+const { createWorker } = require('tesseract.js');
+const fs = require('fs');
+
+const app = express();
+app.use(cors());
+
+const upload = multer({ dest: 'uploads/' });
+let worker;
+
+function logMessage(m) {
+  console.log(m);
+}
+
+async function initOCR() {
+  worker = await createWorker();
+  await worker.load();
+  await worker.loadLanguages('hin');
+  await worker.initialize('hin');
+}
+
+initOCR().then(() => {
+  console.log("OCR engine ready!");
+});
+
+// OCR endpoint
+app.post('/ocr', upload.array('images'), async (req, res) => {
+  const results = [];
+  try {
+    for (const file of req.files) {
+      const tempWorker = await createWorker();
+      await tempWorker.load();
+      await tempWorker.loadLanguages('hin');
+      await tempWorker.initialize('hin');
+      const { data: { text } } = await tempWorker.recognize(file.path);
+      results.push({ fileName: file.originalname, text: text.trim() });
+      await tempWorker.terminate();
+      fs.unlinkSync(file.path);
+    }
+    res.json({ success: true, data: results });
+  } catch (err) {
+    req.files.forEach(file => {
+      if (fs.existsSync(file.path)) fs.unlinkSync(file.path);
+    });
+    console.error(err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.listen(5000, () => console.log('Server running on port 5000'));
