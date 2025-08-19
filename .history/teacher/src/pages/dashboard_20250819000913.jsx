@@ -134,7 +134,7 @@ export default function TeacherDashboard() {
         )}
 
         {activeTab === "settings" && (
-          <Setting/>
+          <Settings/>
         )}
       </main>
     </div>

@@ -10,8 +10,6 @@ import {
 import Students from "../components/Students";
 import ExamList from '../components/Exams'
 import Results from '../components/Results'
-import Announcements from "../components/Announcements";
-import Setting from "../components/Settings";
 function Button({ children, className = "", ...props }) {
   return (
     <button
@@ -130,11 +128,18 @@ export default function TeacherDashboard() {
         )}
 
         {activeTab === "announcements" && (
-          <Announcements/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Announcements</h1>
+            <Textarea placeholder="Write an announcement..." />
+            <Button className="mt-2">Publish</Button>
+          </div>
         )}
 
         {activeTab === "settings" && (
-          <Setting/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Settings</h1>
+            <p className="text-gray-600">Teacher profile and preferences.</p>
+          </div>
         )}
       </main>
     </div>

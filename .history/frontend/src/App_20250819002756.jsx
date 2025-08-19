@@ -6,7 +6,6 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import { useUser } from './context/UserContext'
 import DemoPage from './pages/DemoPage'
-import TakeExam from './components/TakeExam'
 function App() {
   const { isAuth } = useUser();
   console.log("isAuth", isAuth)
@@ -26,7 +25,7 @@ function App() {
           </PrivateRoutes>
         } />
 
-        <Route path="dashboard/take-exam/:id" element={<TakeExam />} />
+        <Route path="/take-exam/:id" element={<TakeExam />} />
       </Routes>
     </>
   )

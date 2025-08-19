@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-   const navigate = useNavigate();
+
   const exams = [
     { id: 1, title: "Math Quiz", date: "2025-08-21", status: "Upcoming" },
     { id: 2, title: "Science Test", date: "2025-08-18", status: "Completed" },
@@ -112,7 +111,7 @@ export default function Dashboard() {
                   <p className="text-gray-600 text-sm">Date: {e.date}</p>
                   <p className="text-sm">Status: {e.status}</p>
                   {e.status === "Upcoming" && (
-                    <button className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm" onClick={() => navigate(`/dashboard/take-exam/${e.id}`)}>
+                    <button className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
                       Start Exam
                     </button>
                   )}

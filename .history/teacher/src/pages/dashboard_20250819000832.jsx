@@ -5,13 +5,13 @@ import {
   FileText,
   BarChart3,
   Megaphone,
-  Settings,
+  // Settings,
 } from "lucide-react";
 import Students from "../components/Students";
 import ExamList from '../components/Exams'
 import Results from '../components/Results'
 import Announcements from "../components/Announcements";
-import Setting from "../components/Settings";
+import Settings from "../components/Settings";
 function Button({ children, className = "", ...props }) {
   return (
     <button
@@ -134,7 +134,7 @@ export default function TeacherDashboard() {
         )}
 
         {activeTab === "settings" && (
-          <Setting/>
+          <Settings/>
         )}
       </main>
     </div>

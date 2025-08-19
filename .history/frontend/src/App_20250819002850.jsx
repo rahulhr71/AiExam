@@ -26,7 +26,7 @@ function App() {
           </PrivateRoutes>
         } />
 
-        <Route path="dashboard/take-exam/:id" element={<TakeExam />} />
+        <Route path="/take-exam/:id" element={<TakeExam />} />
       </Routes>
     </>
   )

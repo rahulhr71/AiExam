@@ -6,12 +6,9 @@ import {
   BarChart3,
   Megaphone,
   Settings,
+  Search,
 } from "lucide-react";
-import Students from "../components/Students";
-import ExamList from '../components/Exams'
-import Results from '../components/Results'
-import Announcements from "../components/Announcements";
-import Setting from "../components/Settings";
+
 function Button({ children, className = "", ...props }) {
   return (
     <button
@@ -77,64 +74,50 @@ export default function TeacherDashboard() {
       <main className="flex-1 p-6">
         {activeTab === "dashboard" && (
           <div>
-            <h1 className="text-2xl font-bold mb-6">Dashboard Overview</h1>
-
-            {/* Stats Section */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-gray-600">Total Students</h2>
-                <p className="text-3xl font-bold">120</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-gray-600">Upcoming Exams</h2>
-                <p className="text-3xl font-bold">5</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-gray-600">Pending Results</h2>
-                <p className="text-3xl font-bold">8</p>
-              </div>
-            </div>
-
-            {/* Recent Activity */}
-            <div className="bg-white p-6 rounded-lg shadow mb-6">
-              <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
-              <ul className="space-y-2 text-gray-700">
-                <li>📌 New exam scheduled: Mathematics - 20th Aug</li>
-                <li>📌 10 new students registered</li>
-                <li>📌 Result published: Science Test</li>
-              </ul>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
-              <div className="flex gap-4">
-                <Button>➕ Add Student</Button>
-                <Button>📝 Create Exam</Button>
-                <Button>📢 Make Announcement</Button>
-              </div>
-            </div>
+            <h1 className="text-2xl font-bold mb-4">Dashboard Overview</h1>
+            <p className="text-gray-600">Analytics and performance summary.</p>
           </div>
         )}
 
         {activeTab === "students" && (
-          <Students/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Manage Students</h1>
+            <div className="flex gap-2 mb-4">
+              <Input placeholder="Search students..." />
+              <Button>Add Student</Button>
+            </div>
+            <p className="text-gray-600">Student list will go here.</p>
+          </div>
         )}
 
         {activeTab === "exams" && (
-          <ExamList/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Exams</h1>
+            <Button className="mb-4">Create New Exam</Button>
+            <p className="text-gray-600">Exam management section.</p>
+          </div>
         )}
 
         {activeTab === "results" && (
-          <Results/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Results</h1>
+            <p className="text-gray-600">View and analyze student results.</p>
+          </div>
         )}
 
         {activeTab === "announcements" && (
-          <Announcements/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Announcements</h1>
+            <Textarea placeholder="Write an announcement..." />
+            <Button className="mt-2">Publish</Button>
+          </div>
         )}
 
         {activeTab === "settings" && (
-          <Setting/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Settings</h1>
+            <p className="text-gray-600">Teacher profile and preferences.</p>
+          </div>
         )}
       </main>
     </div>

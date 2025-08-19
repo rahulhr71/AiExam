@@ -7,7 +7,7 @@ export default function Register() {
     email: "",
     password: "",
     phone: "",
-    role: "student",
+    role: "student", // student or teacher
     rollOrEmpId: "",
     classOrDept: "",
     address: "",
@@ -20,7 +20,7 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Register Data:", form);
-    // TODO: API integration
+    // TODO: Call backend API here
     alert("✅ Registration successful!");
     navigate("/login");
   };
@@ -97,34 +97,16 @@ export default function Register() {
             required
           />
 
-          {/* Class (Student) OR Department (Teacher) */}
-          {form.role === "student" ? (
-            <select
-              name="classOrDept"
-              value={form.classOrDept}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg"
-              required
-            >
-              <option value="">Select Class</option>
-              <option value="10A">10th A</option>
-              <option value="10B">10th B</option>
-              <option value="11A">11th A</option>
-              <option value="11B">11th B</option>
-              <option value="12A">12th A</option>
-              <option value="12B">12th B</option>
-            </select>
-          ) : (
-            <input
-              type="text"
-              name="classOrDept"
-              placeholder="Department"
-              value={form.classOrDept}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg"
-              required
-            />
-          )}
+          {/* Class or Department */}
+          <input
+            type="text"
+            name="classOrDept"
+            placeholder={form.role === "student" ? "Class (e.g. 10th A)" : "Department"}
+            value={form.classOrDept}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-lg"
+            required
+          />
 
           {/* Address */}
           <textarea

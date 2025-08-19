@@ -11,7 +11,6 @@ import Students from "../components/Students";
 import ExamList from '../components/Exams'
 import Results from '../components/Results'
 import Announcements from "../components/Announcements";
-import Setting from "../components/Settings";
 function Button({ children, className = "", ...props }) {
   return (
     <button
@@ -134,7 +133,10 @@ export default function TeacherDashboard() {
         )}
 
         {activeTab === "settings" && (
-          <Setting/>
+          <div>
+            <h1 className="text-2xl font-bold mb-4">Settings</h1>
+            <p className="text-gray-600">Teacher profile and preferences.</p>
+          </div>
         )}
       </main>
     </div>

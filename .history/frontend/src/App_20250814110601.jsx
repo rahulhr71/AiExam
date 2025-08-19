@@ -4,11 +4,10 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
-import { useUser } from './context/UserContext'
+import {useUser} from './context/UserContext'
 import DemoPage from './pages/DemoPage'
-import TakeExam from './components/TakeExam'
 function App() {
-  const { isAuth } = useUser();
+const { isAuth } = useUser();
   console.log("isAuth", isAuth)
   const PrivateRoutes = ({ children }) => {
     return isAuth ? children : <Navigate to="/login" />;
@@ -18,15 +17,12 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login/>}/>
         <Route path="/dashboard" element={
-          <PrivateRoutes>
-            <Dashboard />
-
-          </PrivateRoutes>
+                 <PrivateRoutes>
+                    <Dashboard />
+                 </PrivateRoutes>
         } />
-
-        <Route path="dashboard/take-exam/:id" element={<TakeExam />} />
       </Routes>
     </>
   )
