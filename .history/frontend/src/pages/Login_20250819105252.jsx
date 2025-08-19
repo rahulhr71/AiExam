@@ -21,14 +21,14 @@ export default function Login() {
       if (response.status === 200) {
         console.log("Login successful:", response.data);
         alert("Login successful!");
-        navigate("/dashboard"); 
+        navigate("/student"); 
         return;
       }
 
       if (response.status === 401) {
-        alert("⚠️ Invalid credentials. Please try again."); 
+        alert("⚠️ Invalid credentials. Please try again.");
         return;
-
+        
       }
 
       if (response.status === 500) {

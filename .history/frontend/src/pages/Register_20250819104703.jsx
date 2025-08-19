@@ -39,7 +39,7 @@ export default function Register() {
 
       if (response.status === 201) {
         console.log("Registration successful:", response.data);
-        alert(" Registration successful!");
+        alert("✅ Registration successful!");
         navigate("/login");
         return;
       }

@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { cache, useState } from "react";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 export default function Register() {
+ 
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "", 
     phone: "",
     role: "student",
-    studentType: "",
+    studentType: "", 
     rollOrEmpId: "",
     classOrDept: "",
     address: "",
@@ -21,47 +21,43 @@ export default function Register() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-
-    
-    if (form.password !== form.confirmPassword) {
-      alert(" Passwords do not match!");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/api/auth/register", 
-        form,
-        { withCredentials: true }
-      );
-
-      if (response.status === 201) {
-        console.log("Registration successful:", response.data);
-        alert(" Registration successful!");
+    console.log("Register Data:", form);
+    try{
+      const resposnse = await axios.post("http://localhost:4000/api/auth/login", form, {
+        withCredentials: true,
+      });
+      if (resposnse.status === 201) {
+        console.log("Registration successful:", resposnse.data);
         navigate("/login");
         return;
       }
-
-      if (response.status === 409) {
-        alert("⚠️ Email already exists. Please use a different email.");
+      if (resposnse.status === 409) {
+        console.error("Email already exists:", resposnse.data);
+        alert("Email already exists. Please use a different email.");
+        return;
+      }
+      if (resposnse.status === 400) {
+        console.error("Validation error:", resposnse.data);
+        alert("Validation error. Please check your input.");
+        return;
+      }
+      if (resposnse.status === 500) {
+        console.error("Server error:", resposnse.data);
+        alert("Server error. Please try again later.");
         return;
       }
 
-      if (response.status === 400) {
-        alert("⚠️ Validation error. Please check your input.");
-        return;
-      }
+      
 
-      if (response.status === 500) {
-        alert("⚠️ Server error. Please try again later.");
-        return;
-      }
     } catch (error) {
       console.error("Registration Error:", error);
-      alert("❌ Registration failed. Please try again.");
+      alert(" Registration failed. Please try again.");
+      return;
     }
+    alert("✅ Registration successful!");
+    navigate("/login");
   };
 
   return (
@@ -102,17 +98,6 @@ export default function Register() {
             required
           />
 
-          {/* Confirm Password */}
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg"
-            required
-          />
-
           {/* Phone */}
           <input
             type="text"
@@ -135,7 +120,7 @@ export default function Register() {
             <option value="teacher">Teacher 👩‍🏫</option>
           </select>
 
-          {/* Student Type */}
+          {/* Student Type (College/School) */}
           {form.role === "student" && (
             <select
               name="studentType"
@@ -161,7 +146,7 @@ export default function Register() {
             required
           />
 
-          {/* Class / Branch / Department */}
+          {/* Class (School) OR Branch (College) OR Department (Teacher) */}
           {form.role === "student" ? (
             form.studentType === "school" ? (
               <select

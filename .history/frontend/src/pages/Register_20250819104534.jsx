@@ -7,7 +7,7 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "", 
+    confirmPassword: "", // ✅ added confirm password
     phone: "",
     role: "student",
     studentType: "",
@@ -24,22 +24,22 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
+    // ✅ Frontend validation for confirm password
     if (form.password !== form.confirmPassword) {
-      alert(" Passwords do not match!");
+      alert("❌ Passwords do not match!");
       return;
     }
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/auth/register", 
+        "http://localhost:4000/api/auth/register", // ✅ should hit register API, not login
         form,
         { withCredentials: true }
       );
 
       if (response.status === 201) {
         console.log("Registration successful:", response.data);
-        alert(" Registration successful!");
+        alert("✅ Registration successful!");
         navigate("/login");
         return;
       }

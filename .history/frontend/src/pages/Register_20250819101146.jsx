@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
@@ -7,10 +6,9 @@ export default function Register() {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "", 
     phone: "",
     role: "student",
-    studentType: "",
+    studentType: "", 
     rollOrEmpId: "",
     classOrDept: "",
     address: "",
@@ -21,47 +19,12 @@ export default function Register() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    
-    if (form.password !== form.confirmPassword) {
-      alert(" Passwords do not match!");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/api/auth/register", 
-        form,
-        { withCredentials: true }
-      );
-
-      if (response.status === 201) {
-        console.log("Registration successful:", response.data);
-        alert(" Registration successful!");
-        navigate("/login");
-        return;
-      }
-
-      if (response.status === 409) {
-        alert("⚠️ Email already exists. Please use a different email.");
-        return;
-      }
-
-      if (response.status === 400) {
-        alert("⚠️ Validation error. Please check your input.");
-        return;
-      }
-
-      if (response.status === 500) {
-        alert("⚠️ Server error. Please try again later.");
-        return;
-      }
-    } catch (error) {
-      console.error("Registration Error:", error);
-      alert("❌ Registration failed. Please try again.");
-    }
+    console.log("Register Data:", form);
+    // TODO: API integration
+    alert("✅ Registration successful!");
+    navigate("/login");
   };
 
   return (
@@ -102,17 +65,6 @@ export default function Register() {
             required
           />
 
-          {/* Confirm Password */}
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg"
-            required
-          />
-
           {/* Phone */}
           <input
             type="text"
@@ -135,7 +87,7 @@ export default function Register() {
             <option value="teacher">Teacher 👩‍🏫</option>
           </select>
 
-          {/* Student Type */}
+          {/* Student Type (College/School) */}
           {form.role === "student" && (
             <select
               name="studentType"
@@ -161,7 +113,7 @@ export default function Register() {
             required
           />
 
-          {/* Class / Branch / Department */}
+          {/* Class (School) OR Branch (College) OR Department (Teacher) */}
           {form.role === "student" ? (
             form.studentType === "school" ? (
               <select

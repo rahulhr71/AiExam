@@ -22,11 +22,12 @@ export default function TakeExam() {
 
   const videoRef = useRef(null);
 
+  // Handle answers
   const handleAnswer = (qid, value) => {
     setResponses({ ...responses, [qid]: value });
   };
 
- 
+  // Timer countdown
   useEffect(() => {
     if (submitted) return;
     if (timeLeft <= 0) {
@@ -43,21 +44,24 @@ export default function TakeExam() {
     return `${m}:${s < 10 ? "0" : ""}${s}`;
   };
 
+  // Auto-start camera
   useEffect(() => {
     startCamera();
     return () => stopCamera();
   }, []);
 
+  // Start camera
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       videoRef.current.srcObject = stream;
       setCameraOn(true);
     } catch (err) {
-      alert(" Camera access is required to take the exam. Please allow access.");
+      alert("⚠️ Camera access is required to take the exam. Please allow access.");
     }
   };
 
+  // Stop camera
   const stopCamera = () => {
     if (videoRef.current && videoRef.current.srcObject) {
       videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
@@ -65,6 +69,7 @@ export default function TakeExam() {
     setCameraOn(false);
   };
 
+  // Submit exam
   const handleSubmit = () => {
     setSubmitted(true);
     stopCamera();
@@ -89,7 +94,7 @@ export default function TakeExam() {
         <div className="text-red-600 font-semibold">⏳ Time Left: {formatTime(timeLeft)}</div>
       </div>
 
-
+      {/* Live Camera */}
       <div className="bg-gray-100 p-3 rounded-lg mb-6">
         <h3 className="font-semibold mb-2">Live Monitoring 🎥</h3>
         <div className="flex items-center space-x-4">
@@ -106,7 +111,7 @@ export default function TakeExam() {
         </div>
       </div>
 
-
+      {/* Questions */}
       <div className="space-y-6">
         {exam.questions.map((q, index) => (
           <div key={q.id} className="bg-white shadow p-4 rounded-lg">
@@ -149,6 +154,7 @@ export default function TakeExam() {
         ))}
       </div>
 
+      {/* Actions */}
       <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
         <button
           onClick={handleSubmit}

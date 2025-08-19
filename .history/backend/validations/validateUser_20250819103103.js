@@ -96,4 +96,4 @@ const LoginSchema = Joi.object({
       "string.max": "Password must be at most 20 characters",
     }),
 });
-module.exports = { registerSchema ,LoginSchema};
+module.exports = { registerSchema };

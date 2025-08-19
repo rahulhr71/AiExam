@@ -7,10 +7,10 @@ export default function Login() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login Data:", form);
-
+    
     try{
       const response = await axios.post(
         "http://localhost:4000/api/auth/login",
@@ -21,14 +21,13 @@ export default function Login() {
       if (response.status === 200) {
         console.log("Login successful:", response.data);
         alert("Login successful!");
-        navigate("/dashboard"); 
+        navigate("/student"); 
         return;
       }
 
       if (response.status === 401) {
-        alert("⚠️ Invalid credentials. Please try again."); 
+        alert("⚠️ Invalid credentials. Please try again.");
         return;
-
       }
 
       if (response.status === 500) {
@@ -40,8 +39,8 @@ export default function Login() {
       console.error("Login error:", error);
       alert("⚠️ An error occurred. Please try again later.");
     }
-    
-     
+    alert("✅ Login successful!");
+    navigate("/student"); // redirect to student dashboard
   };
 
   return (

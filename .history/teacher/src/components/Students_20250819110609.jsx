@@ -44,7 +44,7 @@ const Students = () => {
                                 <tr key={student._id} className="hover:bg-gray-50 text-sm">
                                     <td className="px-6 py-4 font-medium text-gray-900">{student.name}</td>
                                     <td className="px-6 py-4 text-gray-600">{student.email}</td>
-                                    <td className="px-6 py-4">{student.classOrDept}</td>
+                                    <td className="px-6 py-4">{student.studentType}</td>
                                     <td className="px-6 py-4 space-x-2">
                                         <button className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600">Edit</button>
                                         <button className="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600">Delete</button>

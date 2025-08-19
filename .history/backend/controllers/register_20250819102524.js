@@ -1,6 +1,6 @@
 const { registerSchema } = require("../validations/validateUser");
 const bcrypt = require("bcrypt");
-const User = require("../models/registerUser");
+const Users = require("../models/registerUser");
 
 const userRegister = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ const userRegister = async (req, res) => {
       });
     }
 
-    const existingUser = await User.findOne({ email: value.email });
+    const existingUser = await Users.findOne({ email: value.email });
     if (existingUser) {
       return res.status(409).json({
         message: "Email already exists",
@@ -25,7 +25,7 @@ const userRegister = async (req, res) => {
     const hashedPassword = await bcrypt.hash(value.password, saltRounds);
 
     
-    const newUser = new User({
+    const newUser = new Users({
       name: value.name,
       email: value.email,
       password: hashedPassword,
